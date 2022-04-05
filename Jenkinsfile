@@ -20,7 +20,7 @@ pipeline {
          {
             steps 
             {
-                echo 'This is Deploy file'
+                echo 'This is Deploy1 file'
             }
         }
     }
