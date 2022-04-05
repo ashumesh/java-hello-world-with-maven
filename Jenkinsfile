@@ -1,21 +1,34 @@
-pipeline{
+pipeline {
     agent any
 
-    tools {
-         maven 'maven'
-         jdk 'java'
-    }
-
-    stages{
-        stage('checkout'){
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/sreenivas449/java-hello-world-with-maven.git']]])
+    stages {
+        stage('test')
+         {
+            steps 
+            {
+                echo 'This is testing file'
             }
         }
-        stage('build'){
-            steps{
-               bat 'mvn package'
+        stage('Build')
+         {
+            steps 
+            {
+                echo 'This is build file'
             }
+        }
+        stage('Deploy')
+         {
+            steps 
+            {
+                echo 'This is Deploy file'
+            }
+        }
+    }
+    post
+    {
+        always
+        {
+           emailext body: 'echo "What is the status of pipeline"', subject: 'Pipeline status', to: 'ashu12.meshram@gmail.com'
         }
     }
 }
